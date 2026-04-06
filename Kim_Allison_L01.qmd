@@ -43,19 +43,17 @@ Provide a brief outline/overview of the steps involved in a supervised machine l
 
 ::: {.callout-tip icon="false"}
 ## Solution
-- Step 1: split your data and complete inital setup
-- Step 2: EDA and feature engineering exploration
-- Step 3: fold the training data 
-- Step 4: define recipes 
-- Step 5: set engine with tuning parameters
-- Step 6: store parameters, update if necessary, and define grid
-- Step 7: create workflow
-- Step 8: tune your model grid
-- Step 9: compare different models and select the best one
-- Step 10: obtain final results
-- Step 11: explore and interpret results for final model 
-
-
+- Step 1: Find/collect data and clearly define objectives and prediction problem
+- Step 2: Split data into training and testing sets
+- Step 3: Perform EDA on training data and complete feature engineering exploration
+- Step 4: Create resamples/folds from the training data 
+- Step 5: Complete data preprocessing steps and build recipes
+- Step 6: Set engine with tuning parameters, store parameters and define grid
+- Step 7: Create workflow combining the recipe and the model
+- Step 8: Tune models on resamples of training data, adjusting hyperparameters as necessary
+- Step 9: Compare different models using evaluation metrics
+- Step 10: Obtain final results to select best performing model and tune further if necessary
+- Step 11: Fit final model on full training data, then evaluate performance on test set
 
 :::
 
@@ -66,9 +64,12 @@ Explain the difference between supervised and unsupervised learning.
 ::: {.callout-tip icon="false"}
 ## Solution
 
-Supervised learning is when you have a target or outcome you care about, and the model uses that to “supervise” how it learns from the data. Unsupervised learning doesn’t have a target. Instead, you’re just exploring the data to find patterns or figure out how things are structured.
+Supervised learning is when your data includes a target or outcome variable, and the model uses that information to guide how it learns, essentially “supervising” the learning process. It’s used to build predictive models when you already know the outcomes, like predicting house prices based on past sales.
 
-Often, unsupervised learning can be a step within a supervised process, helping to uncover patterns or structure in the data that we can then use to improve predictions.
+Unsupervised learning, on the other hand, doesn’t have a target variable. Instead, the model explores the data to uncover patterns, clusters, or structure, like grouping customers by shopping behavior without any predefined categories.
+
+Often, unsupervised learning can be a step within a supervised workflow, helping to reveal structure in the data that can then improve predictions.
+
 :::
 
 ### Question 3 
@@ -80,7 +81,7 @@ In general, we can classify a model by its purpose into 1 of the 3 categories be
 ::: {.callout-tip icon="false"}
 ## Solution
 
-Descriptive models aim to describe patterns in the data. They help you understand what the data looks like by identifying trends or revealing relationships between variables,
+Descriptive models aim to describe patterns or illustrate characteristics in the data. They help you summarize and explain patterns in existing data, and to understand what the data looks like by identifying trends or revealing relationships between variables.
 
 :::
 
@@ -89,7 +90,7 @@ Descriptive models aim to describe patterns in the data. They help you understan
 ::: {.callout-tip icon="false"}
 ## Solution
 
-Inferential models use a sample to draw conclusions about a population. They test hypotheses to see whether relationships between variables and the outcome are causal and/or generalizable beyond chance, helping us see which factors or inputs meaningfully affect the target output.
+Inferential models use sample data to test hypotheses and answer research questions about a larger population. They evaluate whether relationships between variables and the outcome are likely real or generalizable byond chance, helping identify which factors meaningfully influence the target outcome.
 
 :::
 
@@ -98,7 +99,7 @@ Inferential models use a sample to draw conclusions about a population. They tes
 ::: {.callout-tip icon="false"}
 ## Solution
 
-Predictive models predict unknown outcomes for new data based on patterns learned from existing data.
+Predictive models aim to produce the most accurate predictions for new or unseen data. They focus on forecasting future outcomes or estimating unknown values based on current or past data, where the goal is estimation rather than inference.
 
 :::
 
@@ -113,7 +114,7 @@ What does it mean to be a mechanistic model?
 ::: {.callout-tip icon="false"}
 ## Solution
 
-A mechanistic model is a type of model that tries to explain how a system works based on known underlying processes or mechanisms, that uses assumptions about the system’s structure and rules. Most of the heavy lifting is done by the assumptions and not the data itself. Usually parametric in form. 
+A mechanistic model explains how a system works based on known underlying processes or mechanisms, using assumptions about the system’s structure and rules. Most of the model’s behavior comes from these assumptions rather than the data itself, and it is usually parametric in form. In data science, mechanistic models are useful when there is strong theoretical knowledge about a system, allowing analysts to interpret results and make causal inferences even with limited data. They are often applied in fields like physics, biology, or engineering, where the underlying processes are well understood.
 
 :::
 
@@ -124,7 +125,7 @@ What does it mean to be an empirically driven model?
 ::: {.callout-tip icon="false"}
 ## Solution
 
-In empirically driven models, there is no exact formula for how variables behave. Instead, the model learns from various observed data patterns and is created with more vague assumptions. They're data-driven and let the data run the model and the model choices. 
+Empirically driven models use observed or historical data to establish relationships between variables. They are data-driven, relying on patterns, trends, or correlations in the data itself, letting the data guide the model structure and choices. These models are created with minimal assumptions about how the system works, and there are no exact formulas for how variables are expected to behave. In data science, empirically driven models are particularly valuable when theoretical knowledge is limited or when systems are too complex. They are widely used for prediction, pattern recognition, and uncovering insights from large datasets, often employing machine learning techniques like decision trees, random forests, or neural networks.
 
 :::
 
@@ -135,7 +136,7 @@ How does the mechanistic and empirically driven model terminology relate to the 
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+Parametric models assume a specific functional form and have a fixed number of parameters, while nonparametric models make fewer assumptions about the data’s structure and can adapt to more complex patterns, often requiring more data. Mechanistic models are almost always parametric because they are built on equations with fixed forms and known parameters, whereas empirically driven models are typically nonparametric, relying on flexible, data-driven approaches to learn patterns without strict assumptions about the underlying structure.
 
 :::
 
@@ -146,7 +147,7 @@ In general, is a mechanistic or empirically driven model easier to interpret? Ex
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+In general, a mechanistic model is easier to interpret because it is based on known principles or theories, such as those from physics or chemistry, so the relationships between variables are meaningful and explainable. This means that mechanistic models often allow for causal interpretation, not just correlation. On the other hand, empirically driven models typically focus on prediction rather than explanation and often use more complex, data-driven algorithms.
 
 :::
 
@@ -157,7 +158,7 @@ How does mechanistic and empirically driven model terminology relate to the idea
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+Mechanistic models tend to be less flexible because they rely on fixed equations or rules derived from theory, which limits their ability to adapt to patterns not anticipated by the model. In contrast, empirically driven models are more adaptable, learning directly from the data and capturing a wide variety of patterns, particularly when nonparametric methods are used. This flexibility, however, often makes them more difficult to interpret.
 
 :::
 
@@ -168,7 +169,7 @@ Describe the bias-variance trade-off when considering the use of a mechanistic o
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+The bias-variance trade-off involves finding the right balance between fitting the training data well and generalizing effectively to new data. Mechanistic models typically have high bias, because they rely on a fixed, theory-based structure, and low variance, since their predictions don’t change much with different datasets. Empirically driven models, especially highly flexible ones, usually have low bias, fitting the training data closely, but high variance, making them more prone to overfitting and performing poorly on new data. Choosing between these approaches depends on the problem. For example, if there is strong theoretical knowledge, a mechanistic model may be appropriate, whereas in the absence of theory, a flexible empirical model might be better, though with the caveat of higher overfitting risk.
 
 :::
 
@@ -179,7 +180,7 @@ Explain the difference between a regression and classification machine learning 
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+Regression problems focus on predicting a continuous numeric output based on input features. Classification problems, on the other hand, aim to assign observations to discrete categories or classes.
 
 :::
 
@@ -190,7 +191,7 @@ When splitting the data, why is it useful to stratify by the outcome/target vari
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+Stratifying by the outcome or target variable when splitting the data is useful because it preserves the same distribution of target values across both the training and test sets. This is particularly important in classification problems with imbalanced classes, where one class may be much more frequent than others. Stratification ensures that the model sees all classes during training and that evaluation on the test set is fair, leading to more reliable and consistent results.
 
 :::
 
@@ -201,7 +202,9 @@ Briefly describe how v-fold cross validation with repeats is used to estimate te
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+V-fold cross-validation with repeats estimates test RMSE by dividing the data into v equal folds, training the model on v–1 folds, and evaluating it on the remaining fold. This process is repeated v times so that each fold serves as the test set once. Repeating the entire process with different random splits produces a more stable and reliable estimate. By averaging over folds and repeats, the method reduces the effects of random variation and bias in the data, ensuring that the test RMSE is not overly influenced by any single fold.
+
+This approach is used to obtain a more accurate measure of how the model is likely to perform on unseen data, and provides a more dependable estimate of its true error.
 
 :::
 
@@ -212,7 +215,7 @@ When might we use a bootstrap resampling procedure instead of v-fold cross valid
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+Bootstrap resampling can be used instead of v-fold cross-validation when the dataset is small or when we want a more stable estimate of test RMSE with low variance. It works by repeatedly drawing random samples from the dataset with replacement, training the model on each sample, and evaluating it on the observations that were not selected. This process allows us to estimate model performance reliably even when the dataset is limited.
 
 :::
 
@@ -223,7 +226,7 @@ Briefly describe model tuning and why we use it.
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+Model tuning involves adjusting a model’s hyperparameters to optimize its performance on the data. The goal is to identify the combination of settings that produces the most accurate predictions on new, unseen data. Good tuning helps the model generalize well, reducing the risk of underfitting or overfitting.
 
 :::
 
@@ -234,7 +237,7 @@ What are two common performance metrics when dealing with a regression ML proble
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+Two commonly used metrics for evaluating regression models are RMSE (Root Mean Squared Error) and MAE (Mean Absolute Error). RMSE calculates the square root of the average squared differences between predicted and actual values, which gives greater weight to larger errors. MAE computes the average absolute differences, treating all errors equally regardless of size.
 
 :::
 
@@ -243,7 +246,7 @@ What are two common performance metrics when dealing with a classification ML pr
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+Two common performance metrics for classification problems are accuracy and ROC AUC (Receiver Operating Characteristic Area Under the Curve). Accuracy is the proportion of correct predictions out of all predictions. An ROC curve plots the true positive rate (recall) against the false positive rate across different thresholds, and the ROC AUC summarizes the model’s overall ability to distinguish between classes, with higher values indicating better discrimination. ROC AUC is generally preferred over accuracy for imbalanced classification problems because it evaluates the model’s ability to distinguish between classes regardless of their relative frequencies.
 
 :::
 
@@ -258,7 +261,7 @@ A company with a subscription based service (for example Netflix, Disney+, New Y
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+This question is inferential because it focuses on understanding the relationship between a specific variable (number of service calls) and the outcome (customer churn). The goal is to draw conclusions about how or why the number of service calls influences customer behavior. The company is seeking insight into causal or associative relationships, not just a prediction of churn.
 
 :::
 
@@ -267,7 +270,7 @@ YOUR SOLUTION HERE
 ::: {.callout-tip icon="false"}
 ## Solution
 
-YOUR SOLUTION HERE
+This question is predictive because it aims to forecast outcomes for individual customers using available data. The focus is on making accurate predictions of future behavior, rather than understanding the underlying reasons for churn.
 
 :::
 
